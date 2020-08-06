@@ -12,11 +12,13 @@ import {
   POKEMON_TRAINER_UPDATE_ERROR,
 } from './constants'
 
+const API_URL = 'https://yuxy-pokedex-api.azurewebsites.net/api/v1'
+
 export const getPokemonTrainerByIdRequest = (id) => (dispatch) => {
   dispatch({ type: POKEMON_TRAINER_GET_REQUEST, payload: { id } })
 
   return axios
-    .get(`${process.env.REACT_APP_API_URL}/PokemonTrainer/GetById/${id}`)
+    .get(`${API_URL}/PokemonTrainer/GetById/${id}`)
     .then((response) => {
       const trainer = response.data
       dispatch({ type: POKEMON_TRAINER_GET_SUCCESS, payload: trainer })
@@ -36,7 +38,7 @@ export const getPokemonTrainerByEmailRequest = (email) => (dispatch) => {
   dispatch({ type: POKEMON_TRAINER_GET_REQUEST, payload: { email } })
 
   return axios
-    .get(`${process.env.REACT_APP_API_URL}/PokemonTrainer/GetByEmail/${email}`)
+    .get(`${API_URL}/PokemonTrainer/GetByEmail/${email}`)
     .then((response) => {
       const trainer = response.data
       dispatch({ type: POKEMON_TRAINER_GET_SUCCESS, payload: trainer })
@@ -56,7 +58,7 @@ export const createPokemonTrainerRequest = (trainer) => (dispatch) => {
   dispatch({ type: POKEMON_TRAINER_CREATE_REQUEST, payload: trainer })
 
   return axios
-    .post(`${process.env.REACT_APP_API_URL}/PokemonTrainer/Create`, trainer)
+    .post(`${API_URL}/PokemonTrainer/Create`, trainer)
     .then((response) => {
       const createdTrainer = response.data
 
@@ -79,7 +81,7 @@ export const updatePokemonTrainerRequest = (trainer) => (dispatch) => {
   dispatch({ type: POKEMON_TRAINER_UPDATE_REQUEST, payload: trainer })
 
   return axios
-    .put(`${process.env.REACT_APP_API_URL}/PokemonTrainer/Update`, trainer)
+    .put(`${API_URL}/PokemonTrainer/Update`, trainer)
     .then((response) => {
       const createdTrainer = response.data
 
